@@ -1,14 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/grocery-bag.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <title>Grocery List - Make Your Own List</title>
-  </head>
-  <body>
-    
-    <script type="module" src="/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/grocery-bag.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>Grocery List - Make Your Own List</title>
+</head>
+
+<body>
+  <main>
+    <!-- heading section -->
+    <div class="title">
+      <div class="heading">
+        Grocery List
+      </div>
+      <div class="sub-heading">
+        Groceries at Your Fingertips
+      </div>
+    </div>
+    <!-- Add items section -->
+    <div class="add-items">
+      <div class="details">
+        <input type="text" class="text-box" name="" id="" placeholder="Enter an Item">
+        <select name="metrics" id="metrics" class="select-option">
+          <option value="" disabled selected>Select Weight</option>
+          <option value="G">G (Grams)</option>
+          <option value="MG">MG (MilliGrams)</option>
+          <option value="KG">KG (Kilogram)</option>
+          <option value="ML">ML (MilleLitre)</option>
+          <option value="Ltr">Ltr (Litre)</option>
+        </select>
+        <input type="number" name="" id="" min="1" class="quantity" placeholder="Quantity">
+      </div>
+      <div class="buttons-section">
+        <button>Add</button>
+        <button>Delete All</button>
+      </div>
+    </div>
+    <!-- info section -->
+    <div class="info">Total Numbers of items purchased: 12 / 20</div>
+    <!-- items section -->
+    <div class="items-section">
+
+    </div>
+  </main>
+  <script type="module" src="/main.js"></script>
+</body>
 </html>
