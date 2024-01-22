@@ -1,0 +1,12 @@
+:root{
+    --primary-color : #083C5A;
+    --secondary-color : #4CB648;
+    --tertiary-color : #FCC72C;
+    --text-color : #E4F4FD;
+}
+
+body{
+    height: 100dvh;
+    width: 100%;
+    background-color: var(--primary-color);
+}
