@@ -7,6 +7,15 @@
     --text-color : #E4F4FD;
 }
 
+section::-webkit-scrollbar {
+    display: none;
+  }
+  
+  section {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
 *{
     margin: 0;
     padding: 0;
@@ -72,6 +81,14 @@ main{
     border: none;
 }
 
+section {
+    max-height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+  }
 .text-box{
     width: 80%;
     margin-bottom: 0.5rem;
@@ -102,10 +119,60 @@ main{
     border: 1px solid red;
 }
 
+.card{
+    width: 80%;
+    background: var(--tertiary-color);
+    min-height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 0.2rem;
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+}
+
+.item-detail{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    border: 1px solid red;
+}
+
+.status-box{
+    border: 1px solid rgb(0, 255, 34);
+    width: 25%;
+    height: 100%;
+}
+
 @media only screen and (max-width: 600px) {
     main{
         height: 96%;
         width: 90%;
         border: 1px solid white;
     }
+
+    .card{
+        min-height: 4rem;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .item-detail{
+        width: 100%;
+        height: 45%;
+    }
+
+    .status-box{
+        border: 1px solid rgb(0, 255, 34);
+        width: 100%;
+        height: 45%;
+    }
 }
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+    section{
+      margin-top: 4rem;
+    }
+  }

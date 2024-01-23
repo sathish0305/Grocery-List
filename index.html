@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="/grocery-bag.png" />
@@ -22,29 +23,38 @@
     <!-- Add items section -->
     <div class="add-items">
       <div class="details">
-        <input type="text" class="text-box" name="" id="" placeholder="Enter an Item">
+        <input type="text" class="text-box" id="itemName" placeholder="Enter an Item" list="grocerylist" autocomplete="off" />
+        <datalist id="grocerylist">
+          <option>Apple</option>
+          <option>Banana</option>
+          <option>Orange</option>
+          <option>Pineapple</option>
+          <option>Kiwi</option>
+        </datalist>
         <select name="metrics" id="metrics" class="select-option">
           <option value="" disabled selected>Select Weight</option>
-          <option value="G">G (Grams)</option>
           <option value="MG">MG (MilliGrams)</option>
+          <option value="G">G (Grams)</option>
           <option value="KG">KG (Kilogram)</option>
           <option value="ML">ML (MilleLitre)</option>
           <option value="Ltr">Ltr (Litre)</option>
+          <option value="Pieces">Pieces (Pcs)</option>
         </select>
-        <input type="number" name="" id="" min="1" class="quantity" placeholder="Quantity">
+        <input type="number" name="" id="quantity" min="1" class="quantity" placeholder="Quantity">
       </div>
       <div class="buttons-section">
-        <button>Add</button>
-        <button>Delete All</button>
+        <button id="addItemBtn">Add</button>
+        <button id="deleteAllBtn">Delete All</button>
       </div>
     </div>
     <!-- info section -->
     <div class="info">Total Numbers of items purchased: 12 / 20</div>
     <!-- items section -->
-    <div class="items-section">
+    <section class="items-section">
 
-    </div>
+    </section>
   </main>
   <script type="module" src="/main.js"></script>
 </body>
+
 </html>
