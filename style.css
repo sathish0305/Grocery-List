@@ -38,7 +38,6 @@ body, main, .title, .details,.info{
 main{
     height: 96%;
     width: 80%;
-    border: 1px solid white;
     flex-direction: column;
 }
 
@@ -116,7 +115,6 @@ section {
 .items-section{
     height: 60%;
     width: 100%;
-    border: 1px solid red;
 }
 
 .card{
@@ -136,11 +134,9 @@ section {
     display: flex;
     align-items: center;
     padding-left: 1rem;
-    border: 1px solid red;
 }
 
 .status-box{
-    border: 1px solid rgb(0, 255, 34);
     width: 25%;
     height: 100%;
     display: flex;
@@ -149,9 +145,8 @@ section {
 }
 
 .status-box div{ 
-    height: 90%;  
-    width: 3rem;
-    border: 1px solid pink;
+    height: 90%;
+    width: 1.5rem;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -173,7 +168,6 @@ section {
     main{
         height: 96%;
         width: 90%;
-        border: 1px solid white;
     }
 
     .card{
@@ -189,7 +183,6 @@ section {
     }
 
     .status-box{
-        border: 1px solid rgb(0, 255, 34);
         width: 100%;
         height: 45%;
     }

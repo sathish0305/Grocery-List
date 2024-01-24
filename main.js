@@ -9,58 +9,112 @@ let itemsArray = (localStorage.getItem('items')) ? JSON.parse(localStorage.getIt
 let grocerylist = document.getElementById('grocerylist')
 import grocery_list from "./itemsList"
 
-let total_items = (purchased_item, total_item) => {
-    totalItems.innerHTML = `Total Numbers of items purchased: ${purchased_item} / ${total_item}`
-}
-
-total_items(1, itemsArray.length)
-
 grocery_list.forEach((item) => {
     let option = document.createElement('option')
     option.innerHTML = item
     grocerylist.appendChild(option)
 })
 
-let itemCard = (itemName, quantity, metrics) => {
-    return `<div class='card'>
-        <div class='item-detail'>
-            ${itemName} ${quantity}${metrics}
-        </div>
-        <div class='status-box'>
-            <div id='purchased' class="purchased"></div>
-            <div id='not-purchased' class="not-purchased"></div>
-            <div id='edit' class="edit"></div>
-            <div id='delete' class="delete"></div>
-        </div>
-    </div>`
+let totalItemsCount = (item)=>{
+    return item.length
 }
 
-itemsArray.forEach((item) => {
-    let template = document.createElement('template');
-    template.innerHTML = itemCard(item.item_name, item.quantity, item.metrics);
-    section.appendChild(template.content)
-})
+console.log(itemsArray.length)
 
-let purchased = document.getElementById('purchased')
-let notPurchased = document.getElementById('not-purchased')
-let edit = document.getElementById('edit')
-let deleteItem = document.getElementById('delete')
+let itemsPurchasedCount = (item)=>{
+    let cart = 0
+    item.forEach((i)=>{
+        let item_ob = JSON.parse(i)
+        if(item_ob.item_status === 'purchased'){
+            cart+=1
+        }
+    })
+    return cart
+}
+
+let itemsCounter = (totalItemsCount,itemsPurchasedCount)=>{
+    totalItems.innerHTML = `Total number of items Purchased ${itemsPurchasedCount} / ${totalItemsCount}`
+}
+
+itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
+
+let saveItem = (item)=>{
+    console.log(JSON.parse(item))
+    let card = document.createElement('div')
+    card.classList.add('card')
+    
+    let itemDetail = document.createElement('div')
+    itemDetail.classList.add('item-detail')
+    itemDetail.innerHTML = `${JSON.parse(item).item_name} ${JSON.parse(item).quantity}${JSON.parse(item).metrics}`
+    card.appendChild(itemDetail)
+    
+    let statusBox = document.createElement('div')
+    statusBox.classList.add('status-box')
+    card.appendChild(statusBox)
+    section.appendChild(card)
+    
+    let purchased = document.createElement('div')
+    purchased.classList.add('purchased')
+    statusBox.appendChild(purchased)
+
+    let notPurchased = document.createElement('div')
+    notPurchased.classList.add('not-purchased')
+    statusBox.appendChild(notPurchased)
+
+    let edit = document.createElement('div')
+    edit.classList.add('edit')
+    statusBox.appendChild(edit)
+
+    let deleteItem = document.createElement('div')
+    deleteItem.classList.add('delete')
+    statusBox.appendChild(deleteItem)
+
+
+    purchased.addEventListener('click',()=>{
+        let itemObject = JSON.parse(item)
+        itemObject.item_status = 'purchased'
+        let str_itemobj = JSON.stringify(itemObject)
+        itemsArray[itemsArray.indexOf(item)] = str_itemobj
+        localStorage.setItem('items',JSON.stringify(itemsArray))
+        card.style.background = '#8ac926'
+        itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
+
+    })
+
+    notPurchased.addEventListener('click',()=>{
+        let itemObject = JSON.parse(item)
+        itemObject.item_status = 'not purchased'
+        let str_itemobj = JSON.stringify(itemObject)
+        itemsArray[itemsArray.indexOf(item)] = str_itemobj
+        localStorage.setItem('items',JSON.stringify(itemsArray))
+        card.style.background = '#FCC72C'
+        itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
+    })
+
+
+    let task_object = JSON.parse(item)
+    if(task_object.item_status === 'purchased'){
+        card.style.background = '#8ac926'
+    }
+}
+
+itemsArray.forEach(saveItem)
+
 
 let addItem = () => {
     let item = {
-        item_name: itemName.value,
-        quantity: quantity.value,
-        metrics: metrics.value
+        item_name:itemName.value,
+        quantity:quantity.value,
+        metrics:metrics.value,
+        item_status:'not purchased'
     }
-    itemsArray.push(item)
+    itemsArray.push(JSON.stringify(item))
     localStorage.setItem('items', JSON.stringify(itemsArray))
-    let template = document.createElement('template');
-    template.innerHTML = itemCard(itemName.value, quantity.value, metrics.value);
-    section.appendChild(template.content)
+    saveItem(JSON.stringify(item))
+    itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
     itemName.value = ''
     quantity.value = ''
     metrics.value = ''
-    location.reload()
 }
 
 addItemBtn.addEventListener('click', addItem)
