@@ -143,6 +143,30 @@ section {
     border: 1px solid rgb(0, 255, 34);
     width: 25%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.status-box div{ 
+    height: 90%;  
+    width: 3rem;
+    border: 1px solid pink;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.purchased{
+    background-image: url('/public/done.png')
+}
+.not-purchased{
+    background-image: url('/public/icons8-wrong-48.png')
+}
+.edit{
+    background-image: url('/public/edit.png')
+}
+.delete{
+    background-image: url('/public/delete.png')
 }
 
 @media only screen and (max-width: 600px) {
