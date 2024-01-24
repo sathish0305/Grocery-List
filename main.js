@@ -78,7 +78,7 @@ let saveItem = (item)=>{
         localStorage.setItem('items',JSON.stringify(itemsArray))
         card.style.background = '#8ac926'
         itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
-
+        location.reload()
     })
 
     notPurchased.addEventListener('click',()=>{
@@ -89,17 +89,21 @@ let saveItem = (item)=>{
         localStorage.setItem('items',JSON.stringify(itemsArray))
         card.style.background = '#FCC72C'
         itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
+        location.reload()
     })
 
 
     let task_object = JSON.parse(item)
-    if(task_object.item_status === 'purchased'){
+    if(task_object.item_status === 'not purchased'){
+        card.style.background = '#FCC72C'
+        itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
+    }else{
         card.style.background = '#8ac926'
+        itemsCounter(totalItemsCount(itemsArray),itemsPurchasedCount(itemsArray))
     }
 }
 
 itemsArray.forEach(saveItem)
-
 
 let addItem = () => {
     let item = {
