@@ -154,7 +154,7 @@ section {
 
     .card{
         min-height: 4rem;
-        width: 100%;
+        width: 90%;
         flex-direction: column;
         justify-content: space-between;
     }
