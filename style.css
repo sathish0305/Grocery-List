@@ -158,9 +158,6 @@ section {
 .not-purchased{
     background-image: url('/icons8-wrong-48.png')
 }
-.edit{
-    background-image: url('/edit.png')
-}
 .delete{
     background-image: url('/delete.png')
 }
