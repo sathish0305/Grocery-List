@@ -9,6 +9,20 @@ let itemsArray = (localStorage.getItem('items')) ? JSON.parse(localStorage.getIt
 let grocerylist = document.getElementById('grocerylist')
 import grocery_list from "./itemsList"
 
+let emptyDiv = document.createElement('div')
+let emptyTasks =()=>{
+    if(itemsArray.length === 0){
+        emptyDiv.innerHTML = 'No Items left, Add new Item!!!'
+        emptyDiv.style.fontSize = '2rem'
+        emptyDiv.style.marginTop = '2rem'
+        emptyDiv.style.textAlign = 'center'
+        section.appendChild(emptyDiv)
+    }else{
+        emptyDiv.style.display = 'none'
+    }
+}
+
+
 const micBtn = document.getElementById('micBtn');
 micBtn.classList.add('micBtn-off')
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -37,6 +51,8 @@ recognition.onerror = (event) => {
   micBtn.classList.add('micBtn-off')
 
 };
+
+
 
 grocery_list.forEach((item) => {
     let option = document.createElement('option')
@@ -70,7 +86,7 @@ let updateCounts = () => {
 };
 
 let saveItem = (item) => {
-    console.log(item)
+    emptyTasks()
     let card = document.createElement('div')
     card.classList.add('card')
 
@@ -102,6 +118,7 @@ let saveItem = (item) => {
         updateItemInArray(item);
         localStorage.setItem('items', JSON.stringify(itemsArray))
         card.style.background = '#8ac926'
+        itemDetail.style.textDecoration = 'line-through'
         updateCounts();
     })
 
@@ -110,6 +127,7 @@ let saveItem = (item) => {
         updateItemInArray(item);
         localStorage.setItem('items', JSON.stringify(itemsArray))
         card.style.background = '#FCC72C'
+        itemDetail.style.textDecoration = 'none'
         updateCounts();
     })
 
@@ -131,8 +149,10 @@ let saveItem = (item) => {
     let task_object = item
     if (task_object.item_status === 'not purchased') {
         card.style.background = '#FCC72C'
+        itemDetail.style.textDecoration = 'none'
         updateCounts();
     } else {
+       itemDetail.style.textDecoration = 'line-through'
         card.style.background = '#8ac926'
         updateCounts();
     }
@@ -188,8 +208,6 @@ let deleteAll = () => {
         }
     }
 }
-
-
-
+emptyTasks()
 deleteAllBtn.addEventListener('click', deleteAll)
 addItemBtn.addEventListener('click', addItem)
